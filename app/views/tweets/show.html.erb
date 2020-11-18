@@ -1,2 +1,5 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<h1>ツイート詳細</h1>
+
+<div>
+	<p><span>ツイート内容: </span><%= link_to user.name, user_path(user.id) %></p>
+</div>
