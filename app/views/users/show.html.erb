@@ -1,5 +1,12 @@
 <h1>マイページ</h1>
 
 <div>
-	<p><span>email: </span><%= @user.email %></p>
+	<p><span>名前: </span><%= @user.name %></p>
+	<p><span>メールアドレス: </span><%= @user.email %></p>
 </div>
+
+<% @tweets.each do |tweet| %>
+<div>
+	<p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
+</div>
+<% end %>

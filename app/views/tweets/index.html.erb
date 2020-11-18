@@ -2,6 +2,7 @@
 
 <% @tweets.each do |tweet| %>
 <div>
+	<p><span>名前: </span><%= link_to tweet.user.name, user_path(tweet.user.id) %></p>
 	<p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
 </div>
 <% end %>
