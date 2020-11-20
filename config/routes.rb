@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'relationships/create'
+  get 'relationships/destroy'
 	root 'tweets#index'
   devise_for :users
 
