@@ -8,9 +8,21 @@
 <div>
 	<% if user_signed_in? %>
 	<% if tweet.favorited_by?(current_user) %>
-	<p><span>お気に入り解除: </span><%= link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :delete %></p>
-	<% else %>
-	<p><span>お気に入り登録: </span><%= link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :post %></p>
+	<div>
+		<p><span>お気に入り解除: </span><%= link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :delete %></p>
+		<% else %>
+		<p><span>お気に入り登録: </span><%= link_to tweet.favorites.count, tweet_favorites_path(tweet.id), method: :post %></p>
+	</div>
+	<% end %>
+
+	<% if current_user != tweet.user %>
+	<% if tweet.user.followed_by?(current_user) %>
+	<div>
+		<p><%= link_to "フォロー済み", user_relationships_path(tweet.user.id), method: :delete %></p>
+		<% else %>
+		<p><%= link_to "フォローする", user_relationships_path(tweet.user.id), method: :post %></p>
+	</div>
+	<% end %>
 	<% end %>
 	<% else %>
 	<p><span>お気に入り数: </span><%= tweet.favorites.count %></p>
