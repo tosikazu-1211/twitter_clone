@@ -4,3 +4,18 @@
 	<p><span>名前: </span><%= @user.name %></p>
 	<p><span>ツイート内容: </span><%= @tweet.body %></p>
 </div>
+
+<%= form_for([@tweet, @comment]) do |f| %>
+<div>
+	<%= f.label :body, "コメント" %>
+	<%= f.text_field :body %>
+	<%= f.submit %>
+</div>
+<% end %>
+
+<% @comments.each do |comment| %>
+<div>
+	<p><span>名前: </span><%= link_to comment.user.name, user_path(comment.user.id) %></p>
+	<p><span>コメント内容: </span><%= comment.body %></p>
+</div>
+<% end %>
