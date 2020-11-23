@@ -1,5 +1,15 @@
 <h1>新規投稿</h1>
 
+<% if @tweet.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+	<ul>
+		<% @tweet.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
 <%= form_for @tweet do |f| %>
 <div>
 	<%= f.label :body, "ツイート" %>
