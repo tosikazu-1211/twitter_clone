@@ -3,7 +3,10 @@
 <% @tweets.each do |tweet| %>
 <div>
 	<p><span>名前: </span><%= link_to tweet.user.name, user_path(tweet.user.id) %></p>
-	<p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
+	<p><span>ツイート内容: </span>
+		<%= attachment_image_tag tweet, :image, :fill, 200, 200, format: 'jpeg' %>
+		<%= link_to tweet.body, tweet_path(tweet.id) %>
+	</p>
 </div>
 <div>
 	<% if user_signed_in? %>
