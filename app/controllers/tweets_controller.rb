@@ -26,6 +26,14 @@ class TweetsController < ApplicationController
     end
   end
 
+  def search
+    if params[:body]. present?
+      @tweets = Tweet.where('body LIKE ?', "%#{params[:body]}%")
+    else
+      @tweets = Tweet.none
+    end
+  end
+
   private
 
   def tweet_params

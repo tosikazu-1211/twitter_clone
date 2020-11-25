@@ -1,0 +1,22 @@
+<h1>ツイート検索</h1>
+
+<%= form_with url: search_tweets_path, method: :get, local: true do |f| %>
+	<%= f.text_field :body %>
+	<%= f.submit :search %>
+	<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<th>ツイート</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @tweets.each do |tweet| %>
+		<tr>
+			<td><%= link_to tweet.body, tweet_path(tweet.id) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
