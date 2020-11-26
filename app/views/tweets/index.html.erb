@@ -3,10 +3,10 @@
 <% @tweets.each do |tweet| %>
 <div>
 	<p><span>名前: </span><%= link_to tweet.user.name, user_path(tweet.user.id) %></p>
+	<p><%= attachment_image_tag tweet, :image, :fill, 200, 200, format: 'jpeg' %></p>
 	<p><span>ツイート内容: </span>
-		<%= attachment_image_tag tweet, :image, :fill, 200, 200, format: 'jpeg' %>
 		<%= link_to tweet.body, tweet_path(tweet.id) %>
-		<%= tweet.updated_at.strftime("%Y-%m-%d %H:%M") %>
+		<p><%= tweet.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 	</p>
 </div>
 <div>
