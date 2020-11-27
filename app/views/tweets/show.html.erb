@@ -6,6 +6,7 @@
 		<%= attachment_image_tag @tweet, :image, :fill, 200, 200, format: 'jpeg' %>
 		<%= @tweet.body %>
 	</p>
+	<p><%= link_to "ツイート削除", tweet_path(@tweet.id), method: :delete %></p>
 </div>
 
 <% if @comment.errors.any? %>
