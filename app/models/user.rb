@@ -16,12 +16,11 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
 
   def followed_by?(user)
-  	passive_relationships.find_by(following_id: user.id).present?
+    passive_relationships.find_by(following_id: user.id).present?
   end
 
   validates :name, presence: true
   validates :email, presence: true
 
   attachment :profile_image
-
 end

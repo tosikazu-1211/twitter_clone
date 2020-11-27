@@ -1,16 +1,16 @@
 class TweetsController < ApplicationController
-	before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
 
   def new
-  	@tweet = Tweet.new
+    @tweet = Tweet.new
   end
 
   def index
-  	@tweets = Tweet.all
+    @tweets = Tweet.all
   end
 
   def show
-  	@tweet = Tweet.find(params[:id])
+    @tweet = Tweet.find(params[:id])
     @user = @tweet.user
     @comment = current_user.comments.build
     @comments = @tweet.comments
@@ -39,5 +39,4 @@ class TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:body, :image)
   end
-
 end

@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
-  	@users = User.all
+    @users = User.all
   end
 
   def show
-  	@tweets = @user.tweets
-  	@favorite_tweets = @user.favorite_tweets
+    @tweets = @user.tweets
+    @favorite_tweets = @user.favorite_tweets
   end
 
   def edit
@@ -21,12 +21,12 @@ class UsersController < ApplicationController
 
   def follows
     user = User.find(params[:id])
-  	@users = user.followings
+    @users = user.followings
   end
 
   def followers
     user = User.find(params[:id])
-  	@users = user.followers
+    @users = user.followers
   end
 
   def search
@@ -46,5 +46,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
 end
