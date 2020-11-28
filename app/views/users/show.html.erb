@@ -1,35 +1,56 @@
 <h1>マイページ</h1>
+<div class="container">
 
-<div>
-	<p><span>名前: </span><%= @user.name %></p>
-	<p><span>メールアドレス: </span><%= @user.email %></p>
-</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg' %>
+		</div>
 
-<div>
-	<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
-	<% if @user.id == current_user.id %>
-	<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+		<div class="col-xs-9">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<td>名前</td>
+						<td><%= @user.name %></td>
+					</tr>
+
+					<tr>
+						<td>メールアドレス</td>
+						<td><%= @user.email %></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<div>
+			<% if @user.id == current_user.id %>
+			<p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
+		<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
+		<% if current_user != @user %>
+		<% if @user.followed_by?(current_user) %>
+		<p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
+		<% else %>
+		<p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+		<% end %>
+		<% end %>
+	</div>
+
+	<% @tweets.each do |tweet| %>
+	<div>
+		<p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
+	</div>
 	<% end %>
-</div>
 
-<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
-<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
-<% if current_user != @user %>
-<% if @user.followed_by?(current_user) %>
-<p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
-<% else %>
-<p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
-<% end %>
-<% end %>
+	<% @favorite_tweets.each do |tweet| %>
+	<div>
+		<p><span>お気に入りツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
+	</div>
+	<% end %>
 
-<% @tweets.each do |tweet| %>
-<div>
-	<p><span>ツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
 </div>
-<% end %>
-
-<% @favorite_tweets.each do |tweet| %>
-<div>
-	<p><span>お気に入りツイート内容: </span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
-</div>
-<% end %>
