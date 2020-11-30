@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user.id)
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to :root
   end
 
   def follows
