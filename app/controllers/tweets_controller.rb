@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweets = Tweet.all.page(params[:page])
+    @tweets = Tweet.all.page(params[:page]).per(2)
   end
 
   def show
