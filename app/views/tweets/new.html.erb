@@ -13,7 +13,7 @@
 <%= form_for @tweet do |f| %>
 <div>
 	<%= f.label :body, "ツイート内容" %>
-	<%= f.attachment_field :image %>
+	<%= f.attachment_field :image, placeholder: "画像" %>
 	<%= f.text_field :body %>
 	<%= f.submit '投稿' %>
 </div>
